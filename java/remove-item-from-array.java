@@ -1,6 +1,6 @@
 import java.util.Arrays;
 
-class main {
+class removeItemFromArray {
     public static void main(String[] args){
         String[] cars = {"Ford", "Volvo", "BWM"};
 
