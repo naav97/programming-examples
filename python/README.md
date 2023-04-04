@@ -2,4 +2,4 @@
 
 ## How to run:
 
-python <file-name>
+`python <file-name>`
