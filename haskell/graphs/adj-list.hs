@@ -43,7 +43,20 @@ procesar (node:stack) vis graph = do
     where
         adj = filter (\n -> notElem n vis) (Map.findWithDefault [] node graph)
 
+bfs :: [Int] -> [Int] -> Map Int [Int] -> IO ()
+bfs [] vis _ = putStr ""
+bfs (act:line) vis graph = do
+    if elem act vis
+        then bfs line vis graph
+        else do
+            putStr (show act ++ " -> ")
+            bfs (line ++ temps) (act:vis) graph
+    where
+        temps = filter (\n -> notElem n vis) (Map.findWithDefault [] act graph)
+
 main = do
     let g = addEdge (addEdge (addEdge (addEdge (addEdge (addEdge (addEdge Map.empty 0 1 ) 0 4 ) 1 2 ) 1 3 ) 1 4 ) 2 3 ) 3 4
     printGraph g
     dfs g
+    bfs [0] [] g
+    putStrLn ""
